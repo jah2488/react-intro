@@ -1,5 +1,21 @@
 /* globals React, moment */
 'use strict';
+
+var Post = React.createClass({
+    render: function () {
+        return (
+            <article>
+                <header>
+                    <h3>{this.props.id} - <a href={this.props.url}>{this.props.title}</a></h3>
+                    <PostTime time={this.props.createdAt} />
+                    <FavoriteButton />
+                </header>
+                <PostBody body={this.props.body}/>
+           </article>
+        );
+    }
+});
+
 var PostTime = React.createClass({
   getInitialState: function () {
     return {
@@ -25,21 +41,6 @@ var PostTime = React.createClass({
   mouseOut: function() {
         this.setState({ hover: false});
   }
-});
-
-var Post = React.createClass({
-    render: function () {
-        return (
-            <article>
-                <header>
-                    <h3><a href={this.props.url}>{this.props.title}</a></h3>
-                    <PostTime time={this.props.createdAt} />
-                    <FavoriteButton />
-                </header>
-                <PostBody body={this.props.body}/>
-           </article>
-        );
-    },
 });
 
 var PostBody = React.createClass({

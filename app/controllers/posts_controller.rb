@@ -4,7 +4,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.shuffle.take(5)
+    page = params.fetch(:page, 0).to_i
+    per_page = params.fetch(:per_page, 5).to_i
+    #@posts = Post.all
+    @posts = Post.limit(per_page).offset(page * per_page)
   end
 
   # GET /posts/1

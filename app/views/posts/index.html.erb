@@ -3,11 +3,16 @@
 <div class='row'>
   <div class='col-sm-8 col-sm-offset-2'>
     <% @posts.each do |post| %>
-      <%= react_component('Post', { url: post_path(post),
+      <%= react_component('Post', {  id: post.id,
+                                    url: post_path(post),
                                   title: post.title,
                               createdAt: post.created_at,
                                    body: post.body }) %>
     <% end %>
   </div>
+  <%= link_to 'Last Page', posts_path(page: (params[:page].to_i || 0 ) - 1) %>
+  <%= link_to 'Next Page', posts_path(page: (params[:page].to_i || 0 ) + 1) %>
 </div>
+
+<%= react_component('PostList', posts: @posts ) %>
 
