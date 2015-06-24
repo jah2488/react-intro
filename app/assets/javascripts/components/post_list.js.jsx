@@ -1,3 +1,5 @@
+'use strict';
+
 var PostList = React.createClass({
     getInitialState: function () {
         return {
